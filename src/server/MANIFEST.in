@@ -1,0 +1,1 @@
+include bats_server/*.yaml

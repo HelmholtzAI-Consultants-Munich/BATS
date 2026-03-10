@@ -1,0 +1,134 @@
+import os
+import sys
+
+sys.path.append("../")
+import pytest
+import subprocess
+import time
+import socket
+
+from skimage import data
+from skimage.io import imsave
+
+from bats_client.app import Application
+from bats_client.utils.bentoml_model import BentomlModel
+from bats_client.utils.fsimagestorage import FilesystemImageStorage
+
+
+@pytest.fixture
+def app():
+    img1 = data.astronaut()
+    img2 = data.coffee()
+    img3 = data.cat()
+
+    if not os.path.exists("in_prog"):
+        os.mkdir("in_prog")
+    imsave("in_prog/coffee.png", img2)
+
+    if not os.path.exists("uncur_data_path"):
+        os.mkdir("uncur_data_path")
+    imsave("uncur_data_path/cat.png", img3)
+
+    # Note: Application signature is (ml_model, num_classes, image_storage, server_ip, server_port, uncur_data_path, ...)
+    app = Application(
+        BentomlModel(),
+        1,
+        FilesystemImageStorage(),
+        "0.0.0.0",
+        7010,
+        os.path.join(os.getcwd(), "uncur_data_path"),
+    )
+
+    return app, img1, img2, img3
+
+
+def test_load_image(app):
+    app, img, img2, _ = app  # Unpack the app, img, and img2 from the fixture
+
+    app.cur_selected_img = "coffee.png"
+    app.cur_selected_path = "in_prog"
+
+    img_test = app.load_image()  # if image_name is None
+    assert img.all() == img_test.all()
+
+    app.cur_selected_path = "uncur_data_path"
+    img_test2 = app.load_image("cat.png")  # if a filename is given
+    assert img2.all() == img_test2.all()
+
+
+def test_run_inference_no_connection(app):
+    app, _, _, _ = app
+    message_text, message_title = app.run_inference()
+    assert (
+        message_text
+        == "Connection could not be established. Please check if the server is running and try again."
+    )
+    assert message_title == "Warning"
+
+
+def test_run_inference_run(app):
+    app, _, _, _ = app
+    # start the server in the background locally
+    command = [
+        "bentoml",
+        "serve",
+        "--working-dir",
+        "../server/bats_server",
+        "service:SegmentationService",
+        "--host=0.0.0.0",
+        "--port=7010",
+        "--timeout=1000",
+    ]
+
+    process = subprocess.Popen(command, stdin=subprocess.PIPE, shell=False)
+
+    def wait_for_server(host, port, timeout=300):
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            try:
+                with socket.create_connection((host, port), timeout=5):
+                    return True
+            except OSError:
+                time.sleep(5)
+        raise RuntimeError(f"Server at {host}:{port} not ready after {timeout} seconds")
+
+    # Replace sleep call
+    wait_for_server("0.0.0.0", 7010, timeout=300)
+    # then do model serving
+    message_text, message_title = app.run_inference()
+    # and assert returning message
+    print(f"HERE: {message_text, message_title}")
+    assert message_text == "Success! Masks generated for all images"
+    assert message_title == "Information"
+    # finally clean up process
+    process.terminate()
+    process.wait()
+    process.kill()
+
+
+def test_search_segs(app):
+    app, _, _, _ = app
+    app.cur_selected_img = "cat.png"
+    app.cur_selected_path = "uncur_data_path"
+    app.search_segs()
+    res = app.seg_filepaths
+    assert len(res) == 1
+    assert res[0] == "cat_seg.tiff"
+    # also remove the seg as it is not needed for other scripts
+    os.remove("uncur_data_path/cat_seg.tiff")
+
+
+"""
+def test_run_train():
+    pass
+
+def test_save_image():
+    pass
+
+def test_move_images():
+    pass
+
+def test_delete_images():
+    pass
+
+"""

@@ -1,0 +1,35 @@
+{
+    "setup": {
+        "segmentation": "GeneralSegmentation",
+        "model_to_use": "CustomCellpose"
+    },
+
+    "service": {
+        "runner_name": "bento_runner",
+        "service_name": "BATS",
+        "port": 7010,
+        "host": 0.0.0.0,
+        "timeout": 1000,
+    },
+
+    "model": { 
+        "classifier":{
+            "in_channels": 1,
+            "num_classes": 2,
+            "features":[64,128,256,512]
+        }
+    },
+
+    "data": {
+        "gray": True,
+        "rescale": True
+    },
+
+    "eval":{
+        "classifier": {
+            
+        },
+        "compute_instance": True,
+        "mask_channel_axis": 0
+    }
+}

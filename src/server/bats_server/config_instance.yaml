@@ -1,0 +1,35 @@
+{
+    "setup": {
+        "segmentation": "GeneralSegmentation",
+        "model_to_use": "CustomCellpose"
+    },
+
+    "service": {
+        "runner_name": "bento_runner",
+        "service_name": "BATS",
+        "port": 7010,
+        "host": 0.0.0.0,
+        "timeout": 1000,
+    },
+
+    "model": { 
+        "segmentor": {
+            "model_type": "cyto"
+        }
+    },
+
+    "data": {
+        "gray": True,
+        "rescale": True
+    },
+
+    "eval":{
+        "segmentor": {
+            "z_axis": null,
+            "channel_axis": null,
+            "rescale": 1,
+            "batch_size": 1
+        },
+        "mask_channel_axis": null
+    }
+}
