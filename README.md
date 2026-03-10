@@ -1,5 +1,5 @@
 # Bioimage Annotation Tool for Segmentation
-*A Bioimage Annotation Tool for Segmentation for all-kinds segmentation in microscopy imaging*
+*A Bioimage Annotation Tool for Segmentation in microscopy imaging*
 
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
 ![tests](https://github.com/HelmholtzAI-Consultants-Munich/BATS/actions/workflows/test.yml/badge.svg?event=push)
@@ -9,7 +9,7 @@
 
 ## How to use this?
 
-This repo includes a client and server side for using our Bioimage Annotation Tool for Segmentation. The client and server communicate via the [bentoml](https://www.bentoml.com/?gclid=Cj0KCQiApKagBhC1ARIsAFc7Mc6iqOLi2OcLtqMbGx1KrFjtLUEZ-bhnqlT2zWREE0x7JImhtNmKlFEaAvSSEALw_wcB) library. The client interacts with the server every time we run model inference. For full functionality of the software the server should be running, either locally or remotely. 
+This repo includes a client and server side for using our Bioimage Annotation Tool for Segmentation (BATS). The client and server communicate via the [bentoml](https://www.bentoml.com/?gclid=Cj0KCQiApKagBhC1ARIsAFc7Mc6iqOLi2OcLtqMbGx1KrFjtLUEZ-bhnqlT2zWREE0x7JImhtNmKlFEaAvSSEALw_wcB) library. The client interacts with the server every time we run model inference. For full functionality of the software the server should be running, either locally or remotely. 
 
 To install and start the server side, follow the instructions described in [BATS Server Installation & Launch](https://github.com/HelmholtzAI-Consultants-Munich/BATS/blob/main/src/server/README.md#using-pypi).
 
