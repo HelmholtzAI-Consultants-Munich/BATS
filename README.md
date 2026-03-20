@@ -6,6 +6,7 @@
 [![codecov](https://codecov.io/gh/HelmholtzAI-Consultants-Munich/BATS/branch/main/graph/badge.svg)](https://codecov.io/gh/HelmholtzAI-Consultants-Munich/BATS)
 [![Documentation Status](https://readthedocs.org/projects/BATS/badge/?version=latest)](https://BATS.readthedocs.io/en/latest/?badge=latest)
 
+This repo is the continuation of [DCP](https://github.com/HelmholtzAI-Consultants-Munich/data-centric-platform). For older version and commit history please checkout the older repo.
 
 ## How to use this?
 
