@@ -2,7 +2,8 @@
 The client of our Bioimage Annotation Tool for Segmentation for microscopy imaging.
 
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
-[![Documentation Status](https://readthedocs.org/projects/BATS/badge/?version=latest)](https://BATS.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/bats-rtd/badge/?version=latest)](https://bats-rtd.readthedocs.io/en/latest/?badge=latest)
+
 
 ## How to use?
 
