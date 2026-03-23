@@ -97,6 +97,6 @@ setup(
     maintainer_email=["christina.bukas@helmholtz-munich.de", "helena.pelin@helmholtz-munich.de"],
     project_urls={ 
         "Repository": "https://github.com/HelmholtzAI-Consultants-Munich/BATS",
-        "Documentation": "https://readthedocs.org/projects/BATS",
+        "Documentation": "https://bats-rtd.readthedocs.io",
     }
 )
