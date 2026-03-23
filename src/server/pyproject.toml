@@ -45,7 +45,7 @@ dev = [
 [project.urls]
 repository = "https://github.com/HelmholtzAI-Consultants-Munich/BATS"
 # homepage = "https://example.com"
-documentation = "https://readthedocs.org/projects/BATS"
+documentation = "https://bats-rtd.readthedocs.io"
 
 [project.scripts]
 bats-server = "bats_server.main:main"
