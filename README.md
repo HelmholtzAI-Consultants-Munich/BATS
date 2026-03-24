@@ -5,10 +5,12 @@
 ![tests](https://github.com/HelmholtzAI-Consultants-Munich/BATS/actions/workflows/test.yml/badge.svg?event=push)
 [![codecov](https://codecov.io/gh/HelmholtzAI-Consultants-Munich/BATS/branch/main/graph/badge.svg)](https://codecov.io/gh/HelmholtzAI-Consultants-Munich/BATS)
 [![Documentation Status](https://readthedocs.org/projects/bats-rtd/badge/?version=latest)](https://bats-rtd.readthedocs.io/en/latest/?badge=latest)
+[![DOI](https://zenodo.org/badge/1177769551.svg)](https://doi.org/10.5281/zenodo.19203685)
+
 
 This repo is the continuation of [DCP](https://github.com/HelmholtzAI-Consultants-Munich/data-centric-platform). For older version and commit history please checkout the older repo.
 
-## How to use this?
+## How to use?
 
 This repo includes a client and server side for using our Bioimage Annotation Tool for Segmentation (BATS). The client and server communicate via the [bentoml](https://www.bentoml.com/?gclid=Cj0KCQiApKagBhC1ARIsAFc7Mc6iqOLi2OcLtqMbGx1KrFjtLUEZ-bhnqlT2zWREE0x7JImhtNmKlFEaAvSSEALw_wcB) library. The client interacts with the server every time we run model inference. For full functionality of the software the server should be running, either locally or remotely. 
 
@@ -36,3 +38,23 @@ Our platform encourages the use of data centric practices. With the user friendl
 - Focus on data curation: no interaction with model parameters during training and inference
 
 #### *Get more with less!*
+
+## How to cite?
+
+If you use **BATS (Bioimage Annotation Tool for Segmentation)** in your work, please cite it as:
+
+> Christina Bukas, Haider Khan, Helena Pelin, Marie Piraud. (2026). *Bioimage Annotation Tool for Segmentation (BATS)* (Version alpha). Zenodo. https://doi.org/10.5281/zenodo.19203685
+
+### BibTeX
+
+```bibtex
+@software{bats_2026,
+  author       = {{Christina Bukas, Haider Khan, Helena Pelin, Marie Piraud}},
+  title        = {Bioimage Annotation Tool for Segmentation (BATS)},
+  year         = {2026},
+  version      = {alpha},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.19203685},
+  url          = {https://doi.org/10.5281/zenodo.19203685}
+}
+```
