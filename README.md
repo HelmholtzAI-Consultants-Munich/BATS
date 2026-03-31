@@ -18,7 +18,7 @@ To install and start the server side, follow the instructions described in [BATS
 
 To run the client GUI follow the instructions described in [BATS Client Installation & Launch](https://github.com/HelmholtzAI-Consultants-Munich/BATS/blob/main/src/client/README.md).
 
-For an overview of both components and their interaction with the step-by-step guide and screen shots, visit our [documentation page](https://BATS.readthedocs.io/en/latest/index.html).
+For an overview of both components and their interaction with the step-by-step guide and screen shots, visit our [documentation page](https://bats-rtd.readthedocs.io/en/latest).
 
 BATS handles all kinds of **segmentation tasks**! Try it out if you need to do:
 * **Instance** segmentation
