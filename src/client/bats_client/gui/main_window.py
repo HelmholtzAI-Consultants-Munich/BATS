@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import logging
+#import logging this should raise an error
 from typing import TYPE_CHECKING
 
 from qtpy.QtWidgets import (
