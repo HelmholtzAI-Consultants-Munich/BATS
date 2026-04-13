@@ -27,7 +27,7 @@ dynamic = ["dependencies"]
 authors = [
   {name="Christina Bukas", email="christina.bukas@helmholtz-munich.de"},
   {name="Helena Pelin", email="helena.pelin@helmholtz-munich.de"},
-  {name="Mariia Koren", email="mariia.koren@helmholtz-munich.de"},
+  {name="Haider Khan", email="haider.khan@helmholtz-munich.de"},
   {name="Marie Piraud", email="marie.piraud@helmholtz-munich.de"},
 ]
 maintainers = [
