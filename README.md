@@ -1,6 +1,6 @@
 <h1>
   BATS: Bioimage Annotation Tool for Segmentation
-  <img src="docs/logo.png" width="100" align="right;">
+  <img src="docs/_static/logo.png" width="100" align="right;">
 </h1>
 
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
