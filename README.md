@@ -55,7 +55,7 @@ If you use **BATS (Bioimage Annotation Tool for Segmentation)** in your work, pl
   year         = {2026},
   version      = {v.0.1.0},
   publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.19203946},
-  url          = {https://doi.org/10.5281/zenodo.19203946}
+  doi          = {10.5281/zenodo.19203685},
+  url          = {https://doi.org/10.5281/zenodo.19203685}
 }
 ```
