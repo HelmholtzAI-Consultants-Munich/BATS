@@ -3,7 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Bioimage Annotation Tool for Segmentation
+.. image:: ../_static/logo.png
+   :align: right
+   :width: 120px
+
+BATS: Bioimage Annotation Tool for Segmentation
 ===============================
 
 *A Bioimage Annotation Tool for Segmentation for all-kinds segmentation in microscopy imaging*

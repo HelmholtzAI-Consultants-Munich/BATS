@@ -1,5 +1,7 @@
-# Bioimage Annotation Tool for Segmentation
-*A Bioimage Annotation Tool for Segmentation in microscopy imaging*
+<h1>
+  BATS: Bioimage Annotation Tool for Segmentation
+  <img src="docs/_static/logo.png" width="100" align="right;">
+</h1>
 
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
 ![tests](https://github.com/HelmholtzAI-Consultants-Munich/BATS/actions/workflows/test.yml/badge.svg?event=push)
@@ -7,8 +9,7 @@
 [![Documentation Status](https://readthedocs.org/projects/bats-rtd/badge/?version=latest)](https://bats-rtd.readthedocs.io/en/latest/?badge=latest)
 [![DOI](https://zenodo.org/badge/1177769551.svg)](https://doi.org/10.5281/zenodo.19203685)
 
-
-This repo is the continuation of [DCP](https://github.com/HelmholtzAI-Consultants-Munich/data-centric-platform). For older version and commit history please checkout the older repo.
+BATS is a Bioimage Annotation Tool for Segmentation in microscopy imaging. This repo is the continuation of [DCP](https://github.com/HelmholtzAI-Consultants-Munich/data-centric-platform). For older version and commit history please checkout the older repo.
 
 ## How to use?
 
@@ -54,7 +55,7 @@ If you use **BATS (Bioimage Annotation Tool for Segmentation)** in your work, pl
   year         = {2026},
   version      = {v.0.1.0},
   publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.19203946},
-  url          = {https://doi.org/10.5281/zenodo.19203946}
+  doi          = {10.5281/zenodo.19203685},
+  url          = {https://doi.org/10.5281/zenodo.19203685}
 }
 ```
