@@ -9,7 +9,12 @@
 [![Documentation Status](https://readthedocs.org/projects/bats-rtd/badge/?version=latest)](https://bats-rtd.readthedocs.io/en/latest/?badge=latest)
 [![DOI](https://zenodo.org/badge/1177769551.svg)](https://doi.org/10.5281/zenodo.19203685)
 
-BATS is a Bioimage Annotation Tool for Segmentation in microscopy imaging. This repo is the continuation of [DCP](https://github.com/HelmholtzAI-Consultants-Munich/data-centric-platform). For older version and commit history please checkout the older repo.
+BATS is a Bioimage Annotation Tool for Segmentation in microscopy imaging.
+
+## Project history
+
+BATS is the continuation of the [Data-Centric Platform (DCP)](https://github.com/HelmholtzAI-Consultants-Munich/data-centric-platform).
+The repository was renamed and restructured. The current BATS repository represents the actively maintained version of the project. For older version and commit history please checkout the older repo.
 
 ## How to use?
 
