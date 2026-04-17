@@ -59,10 +59,7 @@ def app(qtbot, setup_global_variable):
     widget = MainWindow(application)
     qtbot.addWidget(widget)
     yield widget
-    # Enhanced cleanup
     widget.close()
-    widget.deleteLater()  # Schedule widget for deletion
-    qtbot.wait(100)  # Give Qt time to process deletion
 
 
 def test_main_window_setup(qtbot, app, setup_global_variable):

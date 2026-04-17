@@ -30,7 +30,6 @@ def app(qtbot):
     qtbot.addWidget(widget)
     yield widget
     widget.close()
-    widget.deleteLater()
 
 
 @pytest.fixture
@@ -44,7 +43,7 @@ def app_remote(qtbot):
     qtbot.addWidget(widget)
     yield widget
     widget.close()
-    widget.deleteLater()
+
 
 def test_welcome_window_initialization(app):
     assert app.windowTitle() == "BATS"

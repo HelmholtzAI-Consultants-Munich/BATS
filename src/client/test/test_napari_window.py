@@ -1,11 +1,4 @@
 import os
-os.environ['NAPARI_ASYNC_RENDERING'] = '0'
-# Use Qt platform plugin for headless rendering
-import sys
-from PyQt5.QtWidgets import QApplication
-os.environ['QT_QPA_PLATFORM'] = 'offscreen'
-# Use software rendering to avoid OpenGL segmentation faults in headless environment
-os.environ['MESA_GL_VERSION_OVERRIDE'] = '4.5'
 
 from skimage import data
 from skimage.io import imsave
@@ -13,7 +6,6 @@ import numpy as np
 import napari
 
 import pytest
-from unittest.mock import MagicMock, patch
 from bats_client.app import Application
 from bats_client.gui.napari_window import NapariWindow
 from bats_client.utils.bentoml_model import BentomlModel
@@ -38,7 +30,7 @@ def _patch_napari_qt_viewer_close_event(qt_viewer):
 
 
 @pytest.fixture
-def napari_window(qtbot, monkeypatch):
+def napari_window(qtbot):
 
     # img1 = data.astronaut()
     # img2 = data.coffee()
@@ -74,49 +66,6 @@ def napari_window(qtbot, monkeypatch):
 
     application.cur_selected_img = "cat.png"
     application.cur_selected_path = application.uncur_data_path
-
-    # Mock napari.Viewer to avoid segmentation fault in headless environment
-    # The viewer object will be mocked with necessary attributes and methods
-    from PyQt5.QtWidgets import QWidget
-    
-    mock_viewer = MagicMock()
-    mock_qt_viewer = MagicMock()
-    mock_window = MagicMock()
-    
-    # Create a proper QWidget for the main window instead of MagicMock
-    mock_qt_window = QWidget()
-    
-    # Setup viewer hierarchy
-    mock_window._qt_window = mock_qt_window
-    mock_window.qt_viewer = mock_qt_viewer
-    mock_viewer.window = mock_window
-    
-    # Mock layers - data shape should be 2D since num_classes=1
-    mock_layers = MagicMock()
-    mock_layers.__len__ = MagicMock(return_value=1)
-    
-    # Create a mock layer with 2D data (since num_classes=1, no multi-channel data)
-    mock_layer = MagicMock()
-    mock_layer.data = img_mask  # 2D array
-    mock_layer.name = "cat_seg"
-    mock_layers.__getitem__ = MagicMock(return_value=mock_layer)
-    
-    mock_layers.selection = MagicMock()
-    mock_layers.selection.active = MagicMock(name="cat_seg")
-    mock_viewer.layers = mock_layers
-    
-    # Mock dims
-    mock_dims = MagicMock()
-    mock_dims.events = MagicMock()
-    mock_viewer.dims = mock_dims
-    
-    # Mock viewer methods
-    mock_viewer.add_image = MagicMock()
-    mock_viewer.add_labels = MagicMock()
-    mock_viewer.close = MagicMock()
-    
-    # Patch napari.Viewer to return our mock
-    monkeypatch.setattr("bats_client.gui.napari_window.napari.Viewer", lambda show=False: mock_viewer)
 
     widget = NapariWindow(application)
     qtbot.addWidget(widget)
