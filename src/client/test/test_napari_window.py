@@ -2,10 +2,13 @@ import os
 
 from skimage import data
 from skimage.io import imsave
+
 import numpy as np
 import napari
 
+from PyQt5.QtWidgets import QApplication
 import pytest
+
 from bats_client.app import Application
 from bats_client.gui.napari_window import NapariWindow
 from bats_client.utils.bentoml_model import BentomlModel
@@ -87,7 +90,12 @@ def napari_window(qtbot):
             pass
         widget.viewer = None
         QApplication.processEvents()
-    widget.close()
+    # Ensure widget is properly closed before returning
+    try:
+        widget.close()
+        QApplication.processEvents()
+    except:
+        pass
 
 
 def test_napari_window_initialization(napari_window):
