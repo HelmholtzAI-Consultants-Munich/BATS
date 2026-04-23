@@ -49,13 +49,13 @@ Our platform encourages the use of data centric practices. With the user friendl
 
 If you use **BATS (Bioimage Annotation Tool for Segmentation)** in your work, please cite it as:
 
-> Christina Bukas, Haider Khan, Helena Pelin, Marie Piraud. (2026). *Bioimage Annotation Tool for Segmentation (BATS)* (Version v.0.1.0). Zenodo. https://doi.org/10.5281/zenodo.19203946
+> Christina Bukas, Helena Pelin, Haider Khan, Marie Piraud. (2026). *Bioimage Annotation Tool for Segmentation (BATS)* (Version v.0.1.0). Zenodo. https://doi.org/10.5281/zenodo.19203946
 
 ### BibTeX
 
 ```bibtex
 @software{bats_2026,
-  author       = {{Christina Bukas, Haider Khan, Helena Pelin, Marie Piraud}},
+  author       = {{Christina Bukas, Helena Pelin, Haider Khan, Marie Piraud}},
   title        = {Bioimage Annotation Tool for Segmentation (BATS)},
   year         = {2026},
   version      = {v.0.1.0},
