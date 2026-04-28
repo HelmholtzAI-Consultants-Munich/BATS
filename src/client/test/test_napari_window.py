@@ -15,6 +15,9 @@ from bats_client.utils.bentoml_model import BentomlModel
 from bats_client.utils.fsimagestorage import FilesystemImageStorage
 from bats_client.utils import settings
 
+# Mark entire module: skipped on Windows CI via PYTEST_ADDOPTS "-m not napari" (OpenGL/napari stack).
+pytestmark = pytest.mark.napari
+
 
 def _patch_napari_qt_viewer_close_event(qt_viewer):
     """Patch closeEvent to ignore 'canvas already deleted' RuntimeError (napari teardown order)."""
