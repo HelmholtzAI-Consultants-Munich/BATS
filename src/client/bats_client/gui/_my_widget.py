@@ -1,5 +1,15 @@
+import os
+
 from PyQt5.QtWidgets import QWidget, QMessageBox
 from PyQt5.QtCore import QTimer
+
+
+def _noninteractive_ci_skip_modal(custom_dialog) -> bool:
+    """GitHub Actions Windows + offscreen Qt can crash in QMessageBox.exec(); tests may pass custom_dialog."""
+    return (
+        os.environ.get("BATS_CI_NONINTERACTIVE") == "1" and custom_dialog is None
+    )
+
 
 class MyWidget(QWidget):
     """
@@ -28,6 +38,8 @@ class MyWidget(QWidget):
         :type custom_dialog: Any
         :return: None
         """
+        if _noninteractive_ci_skip_modal(custom_dialog):
+            return True
         # setup box
         if custom_dialog is not None:
             self.msg = custom_dialog
@@ -80,6 +92,8 @@ class MyWidget(QWidget):
         :type custom_dialog: Any
         :return: None
         """
+        if _noninteractive_ci_skip_modal(custom_dialog):
+            return "do-nothing"
         # setup box
         if custom_dialog is not None:
             self.msg = custom_dialog
@@ -117,6 +131,8 @@ class MyWidget(QWidget):
         :return: User's choice: "skip", "regenerate", or "cancel"
         :rtype: str
         """
+        if os.environ.get("BATS_CI_NONINTERACTIVE") == "1":
+            return "skip"
         # setup box
         if custom_dialog is not None:
             self.msg = custom_dialog
