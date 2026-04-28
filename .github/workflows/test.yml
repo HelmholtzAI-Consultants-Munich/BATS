@@ -63,7 +63,8 @@ jobs:
             export QT_QPA_PLATFORM=offscreen
             export QT_OPENGL=software
             export QSG_RHI_BACKEND=software
-            export PYTEST_ADDOPTS="${PYTEST_ADDOPTS:-} -m not napari"
+            # Quote marker expr so `napari` is not parsed as a test path (pytest error: file or directory not found: napari).
+            export PYTEST_ADDOPTS="${PYTEST_ADDOPTS:-} -m \"not napari\""
           fi
           coverage run -m pytest
           if [ "$RUNNER_OS" != "Windows" ]; then
