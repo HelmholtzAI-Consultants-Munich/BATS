@@ -32,7 +32,9 @@ class BentomlModel(Model):
         :return: True if connection is successful, False otherwise.
         :rtype: bool
         """
-        url = f"http://{ip}:{port}"  # "http://0.0.0.0:7010"
+        # 0.0.0.0 is only valid when binding a listening socket; outbound HTTP must use a real host (Windows).
+        client_ip = "127.0.0.1" if ip in ("0.0.0.0", "") else ip
+        url = f"http://{client_ip}:{port}"
         try:
             logger.info(f"Attempting to connect to BentoML server at {url}")
             self.client = SyncHTTPClient(url)

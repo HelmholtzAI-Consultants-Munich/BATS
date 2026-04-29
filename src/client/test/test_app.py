@@ -7,6 +7,7 @@ import subprocess
 import time
 import socket
 
+import numpy as np
 from skimage import data
 from skimage.io import imsave
 
@@ -30,11 +31,12 @@ def app():
     imsave("uncur_data_path/cat.png", img3)
 
     # Note: Application signature is (ml_model, num_classes, image_storage, server_ip, server_port, uncur_data_path, ...)
+    # Use loopback for HTTP/TCP clients — "0.0.0.0" is a bind address only; Windows cannot connect to it.
     app = Application(
         BentomlModel(),
         1,
         FilesystemImageStorage(),
-        "0.0.0.0",
+        "127.0.0.1",
         7010,
         os.path.join(os.getcwd(), "uncur_data_path"),
     )
@@ -92,8 +94,7 @@ def test_run_inference_run(app):
                 time.sleep(5)
         raise RuntimeError(f"Server at {host}:{port} not ready after {timeout} seconds")
 
-    # Replace sleep call
-    wait_for_server("0.0.0.0", 7010, timeout=300)
+    wait_for_server("127.0.0.1", 7010, timeout=300)
     # then do model serving
     message_text, message_title = app.run_inference()
     # and assert returning message
@@ -109,13 +110,15 @@ def test_run_inference_run(app):
 def test_search_segs(app):
     app, _, _, _ = app
     app.cur_selected_img = "cat.png"
-    app.cur_selected_path = "uncur_data_path"
+    app.cur_selected_path = app.uncur_data_path
+    # Create mask file here so this test does not depend on test_run_inference_run order or CI timing.
+    seg_path = os.path.join(app.uncur_data_path, "cat_seg.tiff")
+    imsave(seg_path, np.zeros((8, 8), dtype=np.uint8))
     app.search_segs()
     res = app.seg_filepaths
     assert len(res) == 1
     assert res[0] == "cat_seg.tiff"
-    # also remove the seg as it is not needed for other scripts
-    os.remove("uncur_data_path/cat_seg.tiff")
+    os.remove(seg_path)
 
 
 """
